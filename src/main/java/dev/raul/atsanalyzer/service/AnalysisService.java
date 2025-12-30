@@ -15,13 +15,25 @@ import java.util.List;
 public class AnalysisService {
     private final AnalysisRepository analysisRepository;
     private final NormalizationService textNormalizationService;
+    private final TokenizationService tokenizationService;
 
 
     public SendJobDescriptionResponseDTO createJobAnalysis(JobDescriptionDTO request){
         List<String> fullNormalization = textNormalizationService.fullNormalization(request.descriptions());
-        for (String text : fullNormalization){
-            log.info(text);
+
+        List<List<String>> tokenizedTexts = tokenizationService.tokenizeTexts(fullNormalization);
+
+        log.info("Descriptions: {}", fullNormalization.size());
+        for (List<String> tokenizedText : tokenizedTexts) {
+            for (String s : tokenizedText) {
+
+                log.info("Tokenized word: {}", s);
+            }
+
         }
+
+
+
 
 
         return SendJobDescriptionResponseDTO.builder()
