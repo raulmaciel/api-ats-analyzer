@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 public class NormalizationService {
     private static final Map<String, String> SEMANTIC_MAP = Map.of(
             "spring-boot","springboot",
+            "spring boot","springboot",
             "microservicos","microservices",
             "micro servicos","microservices",
             "micro-serviços","microservices",

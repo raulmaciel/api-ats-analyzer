@@ -20,7 +20,7 @@ public class AnalysisService {
     public SendJobDescriptionResponseDTO createJobAnalysis(JobDescriptionDTO request){
         List<String> fullNormalization = textNormalizationService.fullNormalization(request.descriptions());
         for (String text : fullNormalization){
-            log.debug(text);
+            log.info(text);
         }
 
 
