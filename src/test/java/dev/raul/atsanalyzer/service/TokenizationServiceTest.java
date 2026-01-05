@@ -3,7 +3,6 @@ package dev.raul.atsanalyzer.service;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -20,7 +19,7 @@ class TokenizationServiceTest {
         NormalizationService normalizationService = new NormalizationService();
         List<String> nomalizedInput = normalizationService.fullNormalization(input);
 
-        TokenizationService tokenizationService = new TokenizationService();
+        TextPreprocessingService tokenizationService = new TextPreprocessingService();
         List<List<String>> tokenizedTexts = tokenizationService.tokenizeTexts(nomalizedInput);
 
         assertEquals(3, tokenizedTexts.size());
