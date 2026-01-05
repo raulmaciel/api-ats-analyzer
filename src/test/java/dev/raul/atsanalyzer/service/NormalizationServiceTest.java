@@ -1,5 +1,6 @@
 package dev.raul.atsanalyzer.service;
 
+import dev.raul.atsanalyzer.service.preprocessing.NormalizationService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

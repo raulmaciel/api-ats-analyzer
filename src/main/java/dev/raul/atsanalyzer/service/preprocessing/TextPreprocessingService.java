@@ -1,4 +1,4 @@
-package dev.raul.atsanalyzer.service;
+package dev.raul.atsanalyzer.service.preprocessing;
 
 import org.springframework.stereotype.Service;
 

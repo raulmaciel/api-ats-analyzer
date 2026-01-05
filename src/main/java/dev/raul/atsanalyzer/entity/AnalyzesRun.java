@@ -10,7 +10,7 @@ import lombok.*;
 @Getter @Setter
 @AllArgsConstructor @NoArgsConstructor
 @Builder
-public class Analyze {
+public class AnalyzesRun {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

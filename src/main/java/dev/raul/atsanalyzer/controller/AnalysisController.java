@@ -2,7 +2,7 @@ package dev.raul.atsanalyzer.controller;
 
 import dev.raul.atsanalyzer.dto.request.JobDescriptionDTO;
 import dev.raul.atsanalyzer.dto.response.SendJobDescriptionResponseDTO;
-import dev.raul.atsanalyzer.service.AnalysisService;
+import dev.raul.atsanalyzer.service.analysis.AnalysisService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/analyze")
