@@ -58,11 +58,45 @@ public class NGramStatisticsService {
                 .map(e -> new TermStatDTO(
                         e.getKey(),
                         e.getValue(),
-                        (double) e.getValue() / bigrams.size()
+                        (double) e.getValue() / bigramsListSize
                 ))
                 .sorted(Comparator
                         .comparing(TermStatDTO::count).reversed()
                         .thenComparing(TermStatDTO::term))
+                .toList();
+    }
+
+    public List<TermStatDTO> computeTrigrams(List<List<String>> tokenizedText){
+        if (tokenizedText == null) return List.of();
+
+        List<String> trigrams = new ArrayList<>();
+
+        for (List<String> jobDesc : tokenizedText) {
+            for (int i = 0; i < jobDesc.size() - 2; i++){
+                String trigram = jobDesc.get(i) + " " + jobDesc.get(i + 1) + " " + jobDesc.get(i + 2);
+                trigrams.add(trigram);
+            }
+        }
+
+        Map<String, Long> counts = trigrams.stream()
+                .collect(Collectors.groupingBy(term -> term, Collectors.counting()));
+
+        int trigramsListSize = trigrams.size();;
+
+        if (trigramsListSize == 0){
+            return List.of();
+        }
+
+        return counts.entrySet().stream()
+                .map(e -> new TermStatDTO(
+                        e.getKey(),
+                        e.getValue(),
+                        (double) e.getValue() / trigramsListSize
+                ))
+                .sorted(Comparator
+                        .comparing(TermStatDTO::count).reversed()
+                        .thenComparing(TermStatDTO::term)
+                )
                 .toList();
     }
 
@@ -72,6 +106,9 @@ public class NGramStatisticsService {
                 .toList();
         return allTokens;
     }
+
+
+
 
 
 }
