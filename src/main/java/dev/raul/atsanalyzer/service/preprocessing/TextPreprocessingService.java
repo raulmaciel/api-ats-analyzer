@@ -7,7 +7,10 @@ import java.util.stream.Collectors;
 
 @Service
 public class TextPreprocessingService {
-    private final  Set<String> STOP_WORDS = new HashSet<>(List.of(
+    private final Set<String> STOP_WORDS = new HashSet<>(List.of(
+            // Diversos
+            "responsabilidades", "atribuicoes", "requisitos", "qualificacoes",
+            "nivel", "superior", "boa",
             // Artigos / determinantes
             "a", "o", "as", "os", "um", "uma", "uns", "umas",
 
@@ -67,7 +70,7 @@ public class TextPreprocessingService {
             "pra", "pro", "pras", "pros"));
 
 
-    public List<List<String>> processPipeline(List<String> in){
+    public List<List<String>> processPipeline(List<String> in) {
         List<List<String>> tokenizedTexts = tokenizeTexts(in);
 
         return tokenizedTexts.stream()
@@ -75,11 +78,11 @@ public class TextPreprocessingService {
                 .collect(Collectors.toList());
     }
 
-    public List<List<String>> tokenizeTexts(List<String> in){
+    public List<List<String>> tokenizeTexts(List<String> in) {
         if (in == null) return List.of();
 
         return in.stream().map(s -> {
-            if (s == null || s.isBlank()){
+            if (s == null || s.isBlank()) {
                 return Collections.<String>emptyList();
             }
 
@@ -87,7 +90,7 @@ public class TextPreprocessingService {
         }).collect(Collectors.toList());
     }
 
-    public List<String> removeStopWords(List<String> tokenizedTexts){
+    public List<String> removeStopWords(List<String> tokenizedTexts) {
         return tokenizedTexts.stream().filter(word -> !STOP_WORDS.contains(word)).collect(Collectors.toList());
     }
 }
