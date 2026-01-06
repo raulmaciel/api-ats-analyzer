@@ -28,13 +28,21 @@ public class AnalysisService {
         List<String> fullNormalization = textNormalizationService.fullNormalization(request.descriptions());
         List<List<String>> lists = textPreprocessingService.processPipeline(fullNormalization);
 
-        List<TermStatDTO> termStatDTOS = nGramStatisticsService.computeUnigrams(lists);
+//        List<TermStatDTO> termStatDTOS = nGramStatisticsService.computeUnigrams(lists);
+        List<TermStatDTO> termStatDTOS = nGramStatisticsService.computeBigrams(lists);
 
         for (List<String> list : lists) {
             log.info(String.valueOf(list));
         }
 
-        termStatDTOS.stream().limit(60).forEach(s -> log.info("{} -> count={} freq={}", s.term(), s.count(), s.relativeFrequency()*100));
+        termStatDTOS.forEach(s ->
+                log.info("{} -> count={} freq={}%",
+                        s.term(),
+                        s.count(),
+                        String.format(java.util.Locale.US, "%.2f", s.relativeFrequency() * 100)
+                )
+        );
+
 
 
         return SendJobDescriptionResponseDTO.builder()
