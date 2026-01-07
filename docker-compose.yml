@@ -1,0 +1,17 @@
+version: "3.7"
+
+services:
+  postgres:
+    image: bitnami/postgresql:latest
+    ports:
+      - "5433:5432"
+    environment:
+      - POSTGRESQL_USERNAME=postgres
+      - POSTGRESQL_PASSWORD=postgres
+      - POSTGRESQL_DATABASE=ats_analyzer
+    volumes:
+      - ats_analyzer_pg_data_v2:/bitnami/postgresql
+
+volumes:
+  ats_analyzer_pg_data_v2:
+    name: ats_analyzer_pg_data_v2
