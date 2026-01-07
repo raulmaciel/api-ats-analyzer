@@ -14,4 +14,17 @@ public class TermHighlightRulesService {
     }
 
 
+    public List<TermStatDTO> highlightTopNTerms(List<TermStatDTO> computedNGrams, int topN){
+        if (topN > computedNGrams.size()){
+            return computedNGrams.stream()
+                    .limit(computedNGrams.size())
+                    .toList();
+        }
+
+        return computedNGrams.stream()
+                .limit(topN)
+                .toList();
+    }
+
+
 }
