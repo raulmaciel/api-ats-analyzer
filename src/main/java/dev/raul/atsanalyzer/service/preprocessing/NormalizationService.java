@@ -19,7 +19,8 @@ public class NormalizationService {
             "micro-serviços","microservices",
             "microsservicos","microservices",
             "restful","rest",
-            "rest api","api rest"
+            "rest api","api rest",
+            "apis rest", "api rest"
     );
 
     public List<String> fullNormalization(List<String> descriptions) {
@@ -53,8 +54,10 @@ public class NormalizationService {
 
         String normalizeText = Normalizer.normalize(t, Normalizer.Form.NFD)
                 .replaceAll("\\p{InCombiningDiacriticalMarks}+", "")
-                .replaceAll("\\p{Punct}", " ")
-                .replaceAll("\\s+", " ").trim();
+                .replaceAll("[\\p{So}\\p{Cn}]", " ")
+                .replaceAll("[•\\-\\*—\\p{Punct}]", " ")
+                .replaceAll("\\s+", " ")
+                .trim();
 
 
         return normalizeText;
